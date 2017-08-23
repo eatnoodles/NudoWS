@@ -48,7 +48,7 @@ public class NudoControl {
 		    
 		    BufferedImage image = ImageIO.read(is);
 		    if (image != null) {
-		    	image = this.resize(image, 50, 50, false);
+//		    	image = this.resize(image, 50, 50, false);
 		        OutputStream out = response.getOutputStream();
 		        ImageIO.write(image, "png", out);
 		        out.close();

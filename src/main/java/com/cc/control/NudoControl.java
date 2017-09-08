@@ -55,19 +55,19 @@ public class NudoControl {
 		    
 		    BufferedImage image = ImageIO.read(is);
 		    if (image != null) {
-//		    	image = this.resize(image, 50, 50, false);
+		    	image = this.resize(image, 50, 50, false);
 		    	
 		    	Graphics g = image.getGraphics();
 		    	
 		    	int height = image.getHeight();
 		    	int width = image.getWidth();
 		    	
-	            Font f = new Font(null, Font.BOLD, 200);  
+	            Font f = new Font(null, Font.BOLD, 12);  
 	            Color mycolor = Color.black;
 	            g.setColor(mycolor);
 	            g.setFont(f);
 	              
-	            g.drawString(Integer.toString(num), (width/2) , height - 200);  
+	            g.drawString(Integer.toString(num), (width/2) , height - 12);  
 	              
 	            g.dispose();
 	            

@@ -81,14 +81,14 @@ public class NudoControl {
 		    	int height = image.getHeight();
 		    	int width = image.getWidth();
 		    	
-	            Font f = new Font("TimesRoman", Font.BOLD, 60);  
+	            Font f = new Font("新細明體", Font.BOLD, 60);  
 	            Color mycolor = Color.WHITE;
 	            g.setColor(mycolor);
 	            g.setFont(f);
 	              
 	            g.drawString(wording, (width/2) - ((wording.length()/2)*60) , height - 60);  
 	              
-	            g.dispose();  
+	            g.dispose();
 	            
 		        OutputStream out = response.getOutputStream();
 		        ImageIO.write(image, "png", out);

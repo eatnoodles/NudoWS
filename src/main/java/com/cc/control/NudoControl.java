@@ -1,6 +1,9 @@
 package com.cc.control;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -49,6 +52,44 @@ public class NudoControl {
 		    BufferedImage image = ImageIO.read(is);
 		    if (image != null) {
 //		    	image = this.resize(image, 50, 50, false);
+		        OutputStream out = response.getOutputStream();
+		        ImageIO.write(image, "png", out);
+		        out.close();
+		    }
+		    return Response.noContent().build();
+		} catch (Exception e) {
+			return Response.noContent().build();
+		}
+	}
+	
+	@Path("/parrot/{wording}")
+	@Produces("image/png")
+	public Response getParrotImage(@PathParam("wording") String wording) {
+		try {
+			String path = "img/parrot.png";
+			
+		    InputStream is = Application.class.getClassLoader().getResourceAsStream(path);
+
+		    if (is == null) {
+		    	return null;
+		    }
+		    
+		    BufferedImage image = ImageIO.read(is);
+		    if (image != null) {
+		    	Graphics g = image.getGraphics();
+		    	
+		    	int height = image.getHeight();
+		    	int width = image.getWidth();
+		    	
+	            Font f = new Font("TimesRoman", Font.BOLD, 60);  
+	            Color mycolor = Color.WHITE;
+	            g.setColor(mycolor);
+	            g.setFont(f);
+	              
+	            g.drawString(wording, (width/2) - ((wording.length()/2)*60) , height - 60);  
+	              
+	            g.dispose();  
+	            
 		        OutputStream out = response.getOutputStream();
 		        ImageIO.write(image, "png", out);
 		        out.close();

@@ -81,7 +81,7 @@ public class NudoControl {
 		    	int height = image.getHeight();
 		    	int width = image.getWidth();
 		    	
-	            Font f = new Font("新細明體", Font.BOLD, 60);  
+	            Font f = new Font(null, Font.BOLD, 60);  
 	            Color mycolor = Color.WHITE;
 	            g.setColor(mycolor);
 	            g.setFont(f);

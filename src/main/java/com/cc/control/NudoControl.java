@@ -74,6 +74,10 @@ public class NudoControl {
 		    	return null;
 		    }
 		    wording = "測試中文";
+		    
+		    byte[] utf8 = wording.getBytes("UTF-8");
+		    wording = new String(utf8);
+		    
 		    BufferedImage image = ImageIO.read(is);
 		    if (image != null) {
 		    	Graphics g = image.getGraphics();

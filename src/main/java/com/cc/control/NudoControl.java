@@ -73,7 +73,7 @@ public class NudoControl {
 		    if (is == null) {
 		    	return null;
 		    }
-		    
+		    wording = "測試中文";
 		    BufferedImage image = ImageIO.read(is);
 		    if (image != null) {
 		    	Graphics g = image.getGraphics();

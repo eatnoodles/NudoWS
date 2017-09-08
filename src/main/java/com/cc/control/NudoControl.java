@@ -19,6 +19,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.cc.Application;
@@ -30,6 +32,8 @@ import com.cc.Application;
 @Component
 @Path("/API")
 public class NudoControl {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(NudoControl.class);
 	
 	@Context
 	HttpHeaders header;
@@ -66,6 +70,8 @@ public class NudoControl {
 	@Produces("image/png")
 	public Response getParrotImage(@PathParam("wording") String wording) {
 		try {
+			LOG.info("wording="+wording);
+			
 			String path = "img/parrot.png";
 			
 		    InputStream is = Application.class.getClassLoader().getResourceAsStream(path);
@@ -74,9 +80,11 @@ public class NudoControl {
 		    	return null;
 		    }
 		    wording = "測試中文";
+		    LOG.info("測試中文wording="+wording);
 		    
 		    byte[] utf8 = wording.getBytes("UTF-8");
 		    wording = new String(utf8);
+		    LOG.info("new wording="+wording);
 		    
 		    BufferedImage image = ImageIO.read(is);
 		    if (image != null) {

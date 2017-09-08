@@ -95,6 +95,7 @@ public class NudoControl {
 	            g.dispose();
 	            
 	            response.setCharacterEncoding("UTF-8");
+	            response.setHeader("content-type","text/html;charset=UTF-8");
 		        OutputStream out = response.getOutputStream();
 		        ImageIO.write(image, "png", out);
 		        out.close();

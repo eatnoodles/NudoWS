@@ -107,7 +107,7 @@ public class NudoControl {
 	            g.setColor(mycolor);
 	            g.setFont(f);
 	              
-	            g.drawString(wording, width/2 , height - 60);  
+	            g.drawString(wording, (width/2) - ((wording.length()/2)*20) , height - 60);  
 	              
 	            g.dispose();
 	            

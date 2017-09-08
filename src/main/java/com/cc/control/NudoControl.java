@@ -85,15 +85,16 @@ public class NudoControl {
 		    	int height = image.getHeight();
 		    	int width = image.getWidth();
 		    	
-//	            Font f = new Font(null, Font.BOLD, 60);  
+	            Font f = new Font(null, Font.BOLD, 60);  
 	            Color mycolor = Color.WHITE;
 	            g.setColor(mycolor);
-//	            g.setFont(f);
+	            g.setFont(f);
 	              
 	            g.drawString(wording, (width/2) - ((wording.length()/2)*60) , height - 60);  
 	              
 	            g.dispose();
 	            
+	            response.setCharacterEncoding("UTF-8");
 		        OutputStream out = response.getOutputStream();
 		        ImageIO.write(image, "png", out);
 		        out.close();

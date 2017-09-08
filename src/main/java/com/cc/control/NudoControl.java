@@ -63,11 +63,11 @@ public class NudoControl {
 		    	int width = image.getWidth();
 		    	
 	            Font f = new Font(null, Font.BOLD, 80);  
-	            Color mycolor = Color.WHITE;
+	            Color mycolor = Color.black;
 	            g.setColor(mycolor);
 	            g.setFont(f);
 	              
-	            g.drawString(Integer.toString(num), (width/2) - ((3/2)*80) , height - 80);  
+	            g.drawString(Integer.toString(num), (width/2) , height - 80);  
 	              
 	            g.dispose();
 	            

@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -102,12 +103,13 @@ public class NudoControl {
 		    	int height = image.getHeight();
 		    	int width = image.getWidth();
 		    	
-	            Font f = new Font(null, Font.BOLD, 60);  
+		    	Font f = Font.createFont(Font.TRUETYPE_FONT, Application.class.getClassLoader().getResourceAsStream("MINGLIU.TTC")).deriveFont(Font.BOLD, 60);
+		    	
 	            Color mycolor = Color.WHITE;
 	            g.setColor(mycolor);
 	            g.setFont(f);
 	              
-	            g.drawString(wording, (width/2) - ((wording.length()/2)*20) , height - 60);  
+	            g.drawString(wording, (width/2) - ((wording.length()/2)*18) , height - 60);  
 	              
 	            g.dispose();
 	            

@@ -3,6 +3,7 @@ package com.cc.control;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -102,16 +103,12 @@ public class NudoControl {
 		    if (image != null) {
 		    	Graphics g = image.getGraphics();
 		    	
-		    	int height = image.getHeight();
-		    	int width = image.getWidth();
-		    	
 		    	Font f = Font.createFont(Font.TRUETYPE_FONT, Application.class.getClassLoader().getResourceAsStream("MINGLIU.TTC")).deriveFont(Font.BOLD, 60);
 		    	
 	            Color mycolor = Color.WHITE;
 	            g.setColor(mycolor);
-	            g.setFont(f);
-	              
-	            g.drawString(wording, (width/2) - ((wording.length()/2)*18) , height - 60);  
+	            
+	            this.drawCenteredString(g, wording, image, f);
 	              
 	            g.dispose();
 	            
@@ -125,6 +122,19 @@ public class NudoControl {
 		} catch (Exception e) {
 			return Response.noContent().build();
 		}
+	}
+	
+	/**
+	 * @param g
+	 * @param text
+	 * @param image
+	 */
+	public void drawCenteredString(Graphics g, String text, BufferedImage image, Font font) {
+	    FontMetrics metrics = g.getFontMetrics(font);
+	    int x = image.getMinX() + (image.getWidth() - metrics.stringWidth(text)) / 2;
+	    int y = image.getMinY() + ((image.getHeight() - metrics.getHeight())) + metrics.getAscent();
+	    g.setFont(font);
+	    g.drawString(text, x, y);
 	}
 	
 	/**

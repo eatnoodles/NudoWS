@@ -1,0 +1,126 @@
+﻿<!doctype html>
+<html lang="zh-tw">
+<head>
+	<meta charset="UTF-8">
+	<title>鸚鵡兄弟文字圖產生器 - RenZhou</title>
+	<meta name="description" content="鸚鵡兄弟文字圖產生器，快來試試看吧!" />
+	<link rel="Shortcut Icon" type="image/x-icon" href="./img/icon.ico" />
+
+	<meta property="og:url" content="http://renzhou.tw/yinwubrother-textmaker/"/>
+	<meta property="og:image" content="http://renzhou.tw/yinwubrother-textmaker/img/pre.png" />
+	<meta property="og:image" content="http://renzhou.tw/yinwubrother-textmaker/img/pre2.png" />
+	<!-- CSS -->
+	<link rel="stylesheet" href="./css/new2.css" type="text/css">
+ 
+	<!-- 彈窗套件 -->
+	<link rel="stylesheet" href="./css/reveal.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js""></script>
+	<script type="text/javascript" src="./js/jquery.reveal.js"></script>
+
+	<!-- for mobile -->
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	
+	
+</head>
+<body>
+	
+	<div class="main"> 
+	
+		<div class="top-part" id="topp"> 
+			<br>
+			<h1>鸚鵡兄弟文字圖產生器</h1>
+			<hr>
+			<div id="imgs">
+			
+				<img src="./img/pre/000.jpg" alt="img0"><img src="./img/pre/001.jpg" alt="img1"><img src="./img/pre/002.jpg" alt="img2"><img src="./img/pre/003.jpg" alt="img3"><img src="./img/pre/004.jpg" alt="img4"><img src="./img/pre/005.jpg" alt="img5"><img src="./img/pre/006.jpg" alt="img6"><img src="./img/pre/007.jpg" alt="img7"><img src="./img/pre/008.jpg" alt="img8"><img src="./img/pre/009.jpg" alt="img9"><img src="./img/pre/010.jpg" alt="img10"><img src="./img/pre/011.jpg" alt="img11"><img src="./img/pre/012.jpg" alt="img12"><img src="./img/pre/013.jpg" alt="img13"><img src="./img/pre/014.jpg" alt="img14"><img src="./img/pre/015.jpg" alt="img15"><img src="./img/pre/016.jpg" alt="img16"><img src="./img/pre/017.jpg" alt="img17"><img src="./img/pre/018.jpg" alt="img18"><img src="./img/pre/019.jpg" alt="img19"><img src="./img/pre/020.jpg" alt="img20"><img src="./img/pre/021.jpg" alt="img21"><img src="./img/pre/022.jpg" alt="img22"><img src="./img/pre/023.jpg" alt="img23"><img src="./img/pre/024.jpg" alt="img24"><img src="./img/pre/025.jpg" alt="img25"><img src="./img/pre/026.jpg" alt="img26"><img src="./img/pre/027.jpg" alt="img27"><img src="./img/pre/028.jpg" alt="img28"><img src="./img/pre/029.jpg" alt="img29"><img src="./img/pre/030.jpg" alt="img30"><img src="./img/pre/031.jpg" alt="img31"><img src="./img/pre/032.jpg" alt="img32"><img src="./img/pre/033.jpg" alt="img33"><img src="./img/pre/034.jpg" alt="img34"><img src="./img/pre/035.jpg" alt="img35"><img src="./img/pre/036.jpg" alt="img36"><img src="./img/pre/037.jpg" alt="img37"><img src="./img/pre/038.jpg" alt="img38"><img src="./img/pre/039.jpg" alt="img39"><img src="./img/pre/040.jpg" alt="img40"><img src="./img/pre/041.jpg" alt="img41"><img src="./img/pre/042.jpg" alt="img42"><img src="./img/pre/043.jpg" alt="img43"><img src="./img/pre/044.jpg" alt="img44"><img src="./img/pre/045.jpg" alt="img45"><img src="./img/pre/046.jpg" alt="img46"><img src="./img/pre/047.jpg" alt="img47"><img src="./img/pre/048.jpg" alt="img48"><img src="./img/pre/049.jpg" alt="img49"><img src="./img/pre/050.jpg" alt="img50"><img src="./img/pre/051.jpg" alt="img51"><img src="./img/pre/052.jpg" alt="img52"><img src="./img/pre/053.jpg" alt="img53"><img src="./img/pre/054.jpg" alt="img54"><img src="./img/pre/055.jpg" alt="img55"><img src="./img/pre/056.jpg" alt="img56"><img src="./img/pre/057.jpg" alt="img57"><img src="./img/pre/058.jpg" alt="img58"><img src="./img/pre/059.jpg" alt="img59"><img src="./img/pre/060.jpg" alt="img60"><img src="./img/pre/061.jpg" alt="img61"><img src="./img/pre/062.jpg" alt="img62"><img src="./img/pre/063.jpg" alt="img63">			</div>
+		</div>
+		
+		
+		
+		<div class="bot-part" id="bott"> 
+		
+			<canvas id="output" ></canvas>
+		
+			<div>
+				<input id="shuiyinText" value="" type="text" />
+				<label class="label">
+					<input class="radio" id="checkbox" type="checkbox" name="demo-checkbox2">
+					<span class="checkbox radioInput"></span>
+				</label>
+				<br><br>
+				<button class="normal" id="shuiyinBtn" class="mui-btn mui-btn-primary" type="button" > 來人上字</button>
+				<button class="normal" id="errBtn" class="mui-btn mui-btn-primary" type="button" > 上錯字啦</button>
+				<button class="normal" onclick="javascript:window.location.reload()" type="button">再做一張</button>
+				<br><br>
+				<a href="" id="DL" download="鸚鵡兄弟.png" target="_blank"><button class="rred">下載圖片</button></a>
+				<br><br><br><br>
+				<p class="msg">小提醒：用FB開啟會無法下載<br><br>感謝巴友 巴啦啦小魔仙 提供原始圖<br> 有其他我沒有的也歡迎提供喔 </p>
+
+
+				<!-- vvv TEST PART START vvv -->
+				
+				
+				
+				<p id="howlong"></p>
+				
+				
+				
+				
+				<!-- ^^^ TEST PART END   ^^^ -->
+				
+				
+			</div>		
+		</div>
+
+		
+		
+		<div class="footer">
+			<hr>
+			<p><a href="https://github.com/r3850355/yinwubrother-textmaker" target="_blank">GitHub</a>  *  <a href="../about/" target="_blank">聯絡我</a>  *  2017</p>
+			<tt>*	圖片皆來自google  *</tt>
+		</div>
+
+		
+		<div class="reveal-modal" id="myModal">
+		<h1>Σ(°Д°; !!</h1>
+		<h3>偵測到您是用FB瀏覽器</h3>
+		<h3>FB內建瀏覽器會導致不能下載</h3>
+		<p>請利用手機內建瀏覽器或其他瀏覽器</p>
+		</div>
+
+		
+		
+		
+	</div>
+	
+	
+<script type="text/javascript">
+//   FB瀏覽器檢查~~~~~~~~~~~~~~
+  $(document).ready(function() {
+	var bro,isfb;
+	bro = navigator.userAgent; //偵測瀏覽器總類
+	isfb = bro.search("FB");
+	if (isfb > 0){$('#myModal').reveal();}//開啟彈跳視窗
+   });
+  
+</script>
+	
+	
+	
+<script src="./js/script.js"></script>		
+	
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-103037499-1', 'auto');
+  ga('send', 'pageview');
+</script>	
+	
+	
+</body>
+		
+
+</html>

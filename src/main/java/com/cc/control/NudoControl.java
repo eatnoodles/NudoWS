@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLDecoder;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
@@ -91,12 +92,16 @@ public class NudoControl {
 			
 			wording = URLDecoder.decode(wording, "UTF-8");
 			
-			String path = "img/parrot.png";
+			Random random = new Random();
+			int index = random.nextInt(10) + 1;
+			
+			String path = String.format("img/parrot%s.png", index);
 			
 		    InputStream is = Application.class.getClassLoader().getResourceAsStream(path);
 
 		    if (is == null) {
-		    	return null;
+		    	path = "img/parrot.png";
+		    	is = Application.class.getClassLoader().getResourceAsStream(path);
 		    }
 		    
 		    BufferedImage image = ImageIO.read(is);

@@ -7,9 +7,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLDecoder;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
@@ -87,6 +87,8 @@ public class NudoControl {
 	public Response getParrotImage(@PathParam("wording") String wording) {
 		try {
 			LOG.info("wording="+wording);
+			
+			wording = URLDecoder.decode(wording, "UTF-8");
 			
 			String path = "img/parrot.png";
 			

@@ -106,6 +106,7 @@ public class NudoControl {
 		    
 		    BufferedImage image = ImageIO.read(is);
 		    if (image != null) {
+		    	image = this.resize(image, 674, 368, false);
 		    	Graphics g = image.getGraphics();
 		    	
 		    	Font f = Font.createFont(Font.TRUETYPE_FONT, Application.class.getClassLoader().getResourceAsStream("MINGLIU.TTC")).deriveFont(Font.BOLD, 60);

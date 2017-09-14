@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLDecoder;
@@ -46,9 +47,12 @@ public class NudoControl {
 	@Path("/img/{image}")
 	@Produces("image/png")
 	public Response getImage(@PathParam("image") int num) {
+		
+		InputStream is = null;
+		OutputStream os = null;
 		try {
 			String path = String.format("img/%s.png", num > 100 ? "default" : num);
-		    InputStream is = Application.class.getClassLoader().getResourceAsStream(path);
+		    is = Application.class.getClassLoader().getResourceAsStream(path);
 
 		    if (is == null) {
 		    	path = String.format("img/default.png");
@@ -73,19 +77,37 @@ public class NudoControl {
 	              
 	            g.dispose();
 	            
-		        OutputStream out = response.getOutputStream();
-		        ImageIO.write(image, "png", out);
-		        out.close();
+	            os = response.getOutputStream();
+		        ImageIO.write(image, "png", os);
+		        os.close();
 		    }
 		    return Response.noContent().build();
 		} catch (Exception e) {
 			return Response.noContent().build();
+		} finally {
+			if (os != null) {
+				try {
+					os.close();
+				} catch (IOException e) {
+					LOG.error(e.getMessage());
+				}
+			}
+			if (is != null) {
+				try {
+					is.close();
+				} catch (IOException e) {
+					LOG.error(e.getMessage());
+				}
+			}
 		}
 	}
 	
 	@Path("/parrot/{index}/{wording}")
 	@Produces("image/png")
 	public Response getParrotImage(@PathParam("wording") String wording, @PathParam("index") int index) {
+		
+		InputStream is = null;
+		OutputStream os = null;
 		try {
 			LOG.info("wording="+wording);
 			
@@ -93,7 +115,7 @@ public class NudoControl {
 			
 			String path = String.format("img/parrot%s.png", index);
 			
-		    InputStream is = Application.class.getClassLoader().getResourceAsStream(path);
+		    is = Application.class.getClassLoader().getResourceAsStream(path);
 
 		    if (is == null) {
 		    	path = "img/parrot.png";
@@ -116,13 +138,27 @@ public class NudoControl {
 	            
 	            response.setCharacterEncoding("UTF-8");
 	            response.setHeader("content-type","image/png;charset=UTF-8");
-		        OutputStream out = response.getOutputStream();
-		        ImageIO.write(image, "png", out);
-		        out.close();
+		        os = response.getOutputStream();
+		        ImageIO.write(image, "png", os);
 		    }
 		    return Response.noContent().build();
 		} catch (Exception e) {
 			return Response.noContent().build();
+		} finally {
+			if (os != null) {
+				try {
+					os.close();
+				} catch (IOException e) {
+					LOG.error(e.getMessage());
+				}
+			}
+			if (is != null) {
+				try {
+					is.close();
+				} catch (IOException e) {
+					LOG.error(e.getMessage());
+				}
+			}
 		}
 	}
 	

@@ -11,7 +11,6 @@ import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLDecoder;
-import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
@@ -84,16 +83,13 @@ public class NudoControl {
 		}
 	}
 	
-	@Path("/parrot/{wording}")
+	@Path("/parrot/{index}/{wording}")
 	@Produces("image/png")
-	public Response getParrotImage(@PathParam("wording") String wording) {
+	public Response getParrotImage(@PathParam("wording") String wording, @PathParam("index") int index) {
 		try {
 			LOG.info("wording="+wording);
 			
 			wording = URLDecoder.decode(wording, "UTF-8");
-			
-			Random random = new Random();
-			int index = random.nextInt(10) + 1;
 			
 			String path = String.format("img/parrot%s.png", index);
 			

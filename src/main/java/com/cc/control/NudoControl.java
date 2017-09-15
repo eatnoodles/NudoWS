@@ -75,7 +75,7 @@ public class NudoControl {
 	            g.setColor(mycolor);
 	            g.setFont(f);
 	              
-	            g.drawString(Integer.toString(num), (width/2) , height - 12);  
+	            g.drawString(Integer.toString(num), width/2 , height - 12);  
 	              
 	            g.dispose();
 	            
@@ -126,8 +126,6 @@ public class NudoControl {
 		    
 		    BufferedImage image = ImageIO.read(is);
 		    if (image != null) {
-//		    	image = this.resize(image, 674, 368, false);
-		    	
 		    	BigDecimal height = new BigDecimal(Integer.toString(image.getHeight()));
 		    	BigDecimal width = new BigDecimal(Integer.toString(image.getWidth()));
 		    	BigDecimal ratio = width.divide(height, 4, RoundingMode.HALF_EVEN);
@@ -135,17 +133,18 @@ public class NudoControl {
 		    	image = this.resize(image, ratio, false);
 		    	Graphics g = image.getGraphics();
 		    	
-		    	Font f = Font.createFont(Font.TRUETYPE_FONT, Application.class.getClassLoader().getResourceAsStream("MINGLIU.TTC")).deriveFont(Font.BOLD, 60);
+		    	Font f = Font.createFont(Font.TRUETYPE_FONT, Application.class.getClassLoader().getResourceAsStream("MINGLIU.TTC")).deriveFont(Font.BOLD, 14);
 		    	
 	            Color mycolor = Color.WHITE;
 	            g.setColor(mycolor);
 	            
-	            this.drawCenteredString(g, wording, image, f);
+	            if (wording.length() <= 11) {
+	            	this.drawCenteredString(g, wording, image, f);
+	            } else if (wording.length() <= 22) {
+	            	this.drawCenteredString(g, wording.substring(0, 11), wording.substring(11), image, f);
+	            }
 	              
 	            g.dispose();
-	            
-	            response.setCharacterEncoding("UTF-8");
-	            response.setHeader("content-type","image/png;charset=UTF-8");
 		        os = response.getOutputStream();
 		        ImageIO.write(image, "png", os);
 		    }
@@ -178,9 +177,28 @@ public class NudoControl {
 	public void drawCenteredString(Graphics g, String text, BufferedImage image, Font font) {
 	    FontMetrics metrics = g.getFontMetrics(font);
 	    int x = image.getMinX() + (image.getWidth() - metrics.stringWidth(text)) / 2;
-	    int y = image.getMinY() + ((image.getHeight() - metrics.getHeight())) + metrics.getAscent();
+	    int y = image.getMinY() + image.getHeight() - metrics.getHeight() + metrics.getAscent() -10;
 	    g.setFont(font);
 	    g.drawString(text, x, y);
+	}
+	
+	/**
+	 * @param g
+	 * @param text
+	 * @param image
+	 */
+	public void drawCenteredString(Graphics g, String text1, String text2, BufferedImage image, Font font) {
+	    FontMetrics metrics = g.getFontMetrics(font);
+	    
+    	int x2 = image.getMinX() + (image.getWidth() - metrics.stringWidth(text2)) / 2;
+	    int y2 = image.getMinY() + image.getHeight() - metrics.getHeight() + metrics.getAscent();
+	    
+	    int x1 = image.getMinX() + (image.getWidth() - metrics.stringWidth(text1)) / 2;
+	    int y1 = y2 - 15;
+	    
+	    g.setFont(font);
+    	g.drawString(text2, x2, y2);
+	    g.drawString(text1, x1, y1);
 	}
 	
 	/**
@@ -211,10 +229,9 @@ public class NudoControl {
 	 * @return
 	 */
 	private BufferedImage resize(Image originalImage, BigDecimal ratio, boolean preserveAlpha) {
-		final int scaledWidth = 674;
+		final int scaledWidth = 160;
 		//width/height = scaledWidth/scaledHeight = ratio
 		int scaledHeight = Integer.parseInt(new BigDecimal(Integer.toString(scaledWidth)).divide(ratio, 0, RoundingMode.HALF_EVEN).toString());
-		
         int imageType = preserveAlpha ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
         BufferedImage scaledBI = new BufferedImage(scaledWidth, scaledHeight, imageType);
         Graphics2D g = scaledBI.createGraphics();

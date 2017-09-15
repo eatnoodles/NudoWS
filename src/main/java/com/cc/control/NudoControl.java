@@ -115,8 +115,8 @@ public class NudoControl {
 			
 			wording = URLDecoder.decode(wording, "UTF-8");
 			
-			wording = wording.replaceAll("{plus}", "+");
-			wording = wording.replaceAll("{slash}", "/");
+			wording = wording.replace("{plus}", "+");
+			wording = wording.replace("{slash}", "/");
 			
 			String path = String.format("img/parrot%s.png", index);
 			

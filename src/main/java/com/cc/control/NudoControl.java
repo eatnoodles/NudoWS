@@ -229,7 +229,7 @@ public class NudoControl {
 	 * @return
 	 */
 	private BufferedImage resize(Image originalImage, BigDecimal ratio, boolean preserveAlpha) {
-		final int scaledWidth = 160;
+		final int scaledWidth = 170;
 		//width/height = scaledWidth/scaledHeight = ratio
 		int scaledHeight = Integer.parseInt(new BigDecimal(Integer.toString(scaledWidth)).divide(ratio, 0, RoundingMode.HALF_EVEN).toString());
         int imageType = preserveAlpha ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;

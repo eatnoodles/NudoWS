@@ -11,6 +11,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URLDecoder;
 
 import javax.imageio.ImageIO;
@@ -124,7 +126,13 @@ public class NudoControl {
 		    
 		    BufferedImage image = ImageIO.read(is);
 		    if (image != null) {
-		    	image = this.resize(image, 674, 368, false);
+//		    	image = this.resize(image, 674, 368, false);
+		    	
+		    	BigDecimal height = new BigDecimal(Integer.toString(image.getHeight()));
+		    	BigDecimal width = new BigDecimal(Integer.toString(image.getWidth()));
+		    	BigDecimal ratio = width.divide(height, 4, RoundingMode.HALF_EVEN);
+		    	
+		    	image = this.resize(image, ratio, false);
 		    	Graphics g = image.getGraphics();
 		    	
 		    	Font f = Font.createFont(Font.TRUETYPE_FONT, Application.class.getClassLoader().getResourceAsStream("MINGLIU.TTC")).deriveFont(Font.BOLD, 60);
@@ -184,6 +192,29 @@ public class NudoControl {
 	 * @return
 	 */
 	private BufferedImage resize(Image originalImage, int scaledWidth, int scaledHeight, boolean preserveAlpha) {
+        int imageType = preserveAlpha ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
+        BufferedImage scaledBI = new BufferedImage(scaledWidth, scaledHeight, imageType);
+        Graphics2D g = scaledBI.createGraphics();
+        if (preserveAlpha) {
+            g.setComposite(AlphaComposite.Src);
+        }
+        g.drawImage(originalImage, 0, 0, scaledWidth, scaledHeight, null); 
+        g.dispose();
+        return scaledBI;
+    }
+
+	/**
+	 * 
+	 * @param originalImage
+	 * @param ratio
+	 * @param preserveAlpha
+	 * @return
+	 */
+	private BufferedImage resize(Image originalImage, BigDecimal ratio, boolean preserveAlpha) {
+		final int scaledWidth = 674;
+		//width/height = scaledWidth/scaledHeight = ratio
+		int scaledHeight = Integer.parseInt(new BigDecimal(Integer.toString(scaledWidth)).divide(ratio, 0, RoundingMode.HALF_EVEN).toString());
+		
         int imageType = preserveAlpha ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
         BufferedImage scaledBI = new BufferedImage(scaledWidth, scaledHeight, imageType);
         Graphics2D g = scaledBI.createGraphics();
